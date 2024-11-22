@@ -1,11 +1,14 @@
 package com.quirkycoder.springsecurity.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.quirkycoder.springsecurity.dto.JWTAuthenticationResponse;
+import com.quirkycoder.springsecurity.dto.SignInRequest;
 import com.quirkycoder.springsecurity.dto.SignUpRequest;
 import com.quirkycoder.springsecurity.entities.User;
 import com.quirkycoder.springsecurity.services.AuthenticationService;
@@ -22,6 +25,11 @@ public class AuthenticationController {
 	@PostMapping("/signup")
 	public ResponseEntity<User> signup(@RequestBody SignUpRequest signUpRequest) {
 		return ResponseEntity.ok(authenticationService.signup(signUpRequest));
+	}
+	
+	@PostMapping("/signin")
+	public ResponseEntity<JWTAuthenticationResponse> signin(@RequestBody SignInRequest signInRequest) {
+		return ResponseEntity.ok(authenticationService.signin(signInRequest));
 	}
 	
 
